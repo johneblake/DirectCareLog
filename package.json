@@ -1,0 +1,63 @@
+{
+  "name": "sveltekit-electron",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Minimal Sveltekit + Electron starter template.",
+  "main": "src/electron.cjs",
+  "type": "module",
+  "author": {
+    "name": "Author Name",
+    "email": "name@email.com",
+    "url": "http://www.urlhere.com"
+  },
+  "scripts": {
+    "dev": "cross-env NODE_ENV=dev npm run dev:all",
+    "dev:all": "concurrently -n=svelte,electron -c='#ff3e00',blue \"npm run dev:svelte\" \"npm run dev:electron\"",
+    "dev:svelte": "svelte-kit dev",
+    "dev:electron": "electron src/electron.cjs",
+    "build": "cross-env NODE_ENV=production npm run build:svelte && npm run build:electron",
+    "build:svelte": "svelte-kit build",
+    "build:electron": "electron-builder -w --config build.config.json",
+    "start": "svelte-kit start",
+    "check": "svelte-check --tsconfig ./tsconfig.json",
+    "lint": "prettier --check --plugin-search-dir=. . && eslint .",
+    "format": "prettier --write --plugin-search-dir=. .",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "browserslist": [
+    "Chrome 89"
+  ],
+  "dependencies": {
+    "electron-context-menu": "^3.1.2",
+    "electron-serve": "^1.1.0",
+    "electron-window-state": "^5.0.3"
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-static": "^1.0.0-next.13",
+    "@sveltejs/kit": "next",
+    "@typescript-eslint/eslint-plugin": "^5.19.0",
+    "@typescript-eslint/parser": "^5.19.0",
+    "autoprefixer": "^10.4.4",
+    "concurrently": "^7.1.0",
+    "cross-env": "^7.0.3",
+    "cssnano": "^5.1.7",
+    "electron": "^18.0.0",
+    "electron-builder": "^23.0.6",
+    "electron-connect": "^0.6.3",
+    "electron-packager": "^15.4.0",
+    "electron-reloader": "^1.2.3",
+    "electron-updater": "^5.0.2",
+    "eslint": "^8.13.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-svelte3": "^3.4.1",
+    "postcss": "^8.4.12",
+    "postcss-load-config": "^3.1.4",
+    "prettier": "^2.6.2",
+    "prettier-plugin-svelte": "^2.7.0",
+    "svelte": "^3.47.0",
+    "svelte-check": "^2.7.0",
+    "svelte-preprocess": "^4.10.6",
+    "tailwindcss": "^3.0.24",
+    "typescript": "^4.6.3"
+  }
+}
