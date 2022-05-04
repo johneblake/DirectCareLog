@@ -7,13 +7,13 @@
 
   let ready = false;
   onMount(() => (ready = true));
-  let active = 0;
+  let current: HTMLLIElement;
 </script>
 
 {#if ready}
   <SideNav>
-    <SideNavItem icon={mdiViewDashboard} name='Log Panel'/>
-    <SideNavItem icon={mdiSettingsHelper} name='Settings' />
+    <SideNavItem icon={mdiViewDashboard} name='Log Panel' bind:current={current} isDefault/>
+    <SideNavItem icon={mdiSettingsHelper} name='Settings' bind:current={current}/>
   </SideNav>
   <slot />
 {/if}
