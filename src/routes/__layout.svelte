@@ -2,20 +2,24 @@
   import '../app.postcss';
   import { onMount } from 'svelte';
   import { mdiSettingsHelper, mdiViewDashboard } from '@mdi/js';
-  import SideNav from '$lib/utils/ui/SideNav.svelte';
-  import SideNavItem from '$lib/utils/ui/SideNavItem.svelte';
+  import SideNav from 'stylite-ui/SideNav.svelte';
+  import SideNavItem from 'stylite-ui/SideNavItem.svelte';
 
   let ready = false;
   onMount(() => (ready = true));
-  let current: HTMLLIElement;
+  let current: any;
 </script>
 
 {#if ready}
   <SideNav>
-    <SideNavItem icon={mdiViewDashboard} name='Log Panel' bind:current={current} isDefault/>
-    <SideNavItem icon={mdiSettingsHelper} name='Settings' bind:current={current}/>
+    <svelte:fragment slot='panel'>
+      <SideNavItem icon={mdiViewDashboard} name='Log Panel' bind:current={current} isDefault link='/'/>
+      <SideNavItem icon={mdiSettingsHelper} name='Settings' bind:current={current} link='/settings'/>
+    </svelte:fragment>
+    <svelte:fragment slot='content'>
+      <slot />
+    </svelte:fragment>
   </SideNav>
-  <slot />
 {/if}
 
 <style>

@@ -23,7 +23,7 @@ function createWindow() {
   const mainWindow = new BrowserWindow({
     backgroundColor: 'whitesmoke',
     titleBarStyle: 'default',
-    autoHideMenuBar: true,
+    autoHideMenuBar: false,
     trafficLightPosition: {
       x: 17,
       y: 32,
