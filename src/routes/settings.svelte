@@ -1,7 +1,8 @@
 <script>
-import { Container } from "postcss";
+import Container from 'stylite-ui/Container.svelte';
 
 </script>
+
 <Container>
   Settings
 </Container>
