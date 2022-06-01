@@ -6,7 +6,7 @@ import Container from 'stylite-ui/Container.svelte';
 import { onMount } from 'svelte';
 import type { Writable } from 'svelte/store';
 import { addDays } from 'date-fns';
-import type Week from '$lib/entity/week';
+import Week from '$lib/entity/week';
 
   let times = ['6', '7', '8', '9', '10', '11', '12', '1', '2',
               '3', '4', '5', '6', '7', '8', '9', '10', '11'];
@@ -21,7 +21,7 @@ import type Week from '$lib/entity/week';
   let activeWeek: Week | undefined;
 
   onMount(() => {
-    let year = $schedule.years.find((year) => year.year === now.getFullYear());
+    let year = $schedule.years?.find((year) => year.year === now.getFullYear());
     if (!year) {
       if (!$schedule.years) {
         $schedule.years = [];
@@ -44,7 +44,11 @@ import type Week from '$lib/entity/week';
     });
 
     if (!activeWeek) {
-      do something here
+      if (year && !year.weeks) {
+        year.weeks = [];
+      }
+      activeWeek = new Week(now);
+      year?.weeks.push(activeWeek);
     }
   });
 </script>
@@ -54,7 +58,7 @@ import type Week from '$lib/entity/week';
     {activeWeek?.startDate}
   </div>
   <div class="h-full grid grid-cols-8 grid-flow-col">
-    <div class="h-full flex flex-col justify-evenly">
+    <div class="h-full flex flex-col">
       <div class="text-center border-b-2 border-black">Times</div>
       {#each times as time}
         <div>{time}</div>
